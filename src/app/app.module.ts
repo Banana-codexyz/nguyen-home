@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { RoomComponent } from './room/room.component';
 import { UserComponent } from './user/user.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [ HttpClientModule,],
   bootstrap: [AppComponent]

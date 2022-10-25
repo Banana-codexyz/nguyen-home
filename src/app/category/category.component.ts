@@ -10,6 +10,8 @@ import { CategoryService } from '../category.service';
 export class CategoryComponent implements OnInit {
 
   categories: Category[] = [];
+  updateCategory: Category = { id: 0, name: "" };
+  deleteCategory: Category = { id: 0 ,name:"" } ;
 
   constructor(
     private categoryService: CategoryService
@@ -21,7 +23,7 @@ export class CategoryComponent implements OnInit {
 
   getAllCategory(): void {
     this.categoryService.getAllCategory()
-      .subscribe( categories => this.categories = categories);
+      .subscribe(categories => this.categories = categories);
   }
 
   add(name: string): void {
@@ -29,8 +31,33 @@ export class CategoryComponent implements OnInit {
     if (!name) { return; }
     this.categoryService.addCategory({ name } as Category)
       .subscribe(category => {
+        console.log('new category:', category)
         this.categories.push(category);
       });
   }
 
+  onOpenUpdateModal(category: any) {
+    this.updateCategory = category;
+  }
+
+  update(idString: string, name: string): void {
+    const id = Number(idString);
+    name = name.trim();
+    if (!name) { return; }
+    this.categoryService.updateCategory({ id, name } as Category)
+      .subscribe(category => {
+        console.log('updated category:', category);
+        this.getAllCategory();
+      });
+  }
+
+  onOpenDeleteModal(category: any){
+    this.deleteCategory = category;
+  }
+
+  delete(id: number): void {
+    this.categoryService.deleteCategory(id).subscribe(
+      () => this.getAllCategory()
+    );
+  }
 }

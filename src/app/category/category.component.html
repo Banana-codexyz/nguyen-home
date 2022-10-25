@@ -1,6 +1,6 @@
-<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="main-container">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Loại phòng</h1>
+    <h1 class="h2">Danh mục</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group me-2">
         <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
@@ -14,7 +14,7 @@
   </div>
   <br>
   <div class="table-responsive" style="width: 55%;">
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
       <i class="fa fa-plus"></i> Thêm mới
     </button>
     <br><br>
@@ -22,7 +22,7 @@
       <thead>
         <tr>
           <th scope="col">Id</th>
-          <th scope="col">Loại phòng</th>
+          <th scope="col">Danh mục</th>
           <th scope="col">Hành động</th>
         </tr>
       </thead>
@@ -31,9 +31,9 @@
           <td>{{category.id}}</td>
           <td>{{category.name}}</td>
           <td>
-            <i style="font-size: 23px;margin-left: 20px;color: brown;" class="fa fa-pencil-square"
+            <i data-bs-toggle="modal" data-bs-target="#updateCategoryModal" (click)="onOpenUpdateModal(category)" style="font-size: 23px;margin-left: 20px;color: brown;cursor: pointer;" class="fa fa-pencil-square"
               aria-hidden="true"></i>
-            <i style="font-size: 23px;margin-left: 20px;color: brown;" class="fa fa-trash" aria-hidden="true"></i>
+            <i data-bs-toggle="modal" data-bs-target="#deleteCategoryModal" (click)="onOpenDeleteModal(category)" style="font-size: 23px;margin-left: 20px;color: brown;" class="fa fa-trash" aria-hidden="true"></i>
           </td>
         </tr>
       </tbody>
@@ -41,26 +41,71 @@
   </div>
 </main>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Add Modal -->
+<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm mới loại phòng</h1>
+        <h1 class="modal-title fs-5" id="addModalLabel">Thêm mới danh mục</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
         <div class="modal-body">
 
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Tên loại phòng</label>
+            <label for="name" class="form-label">Tên danh mục</label>
             <input class="form-control" id="name" #categoryName>
           </div>
 
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="add(categoryName.value);categoryName.value=''">Lưu</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="add(categoryName.value);">Lưu</button>
         </div>
     </div>
   </div>
+</div>
+
+<!-- Update Modal -->
+<div *ngIf="updateCategory" class="modal fade" id="updateCategoryModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="updateModalLabel">Cập nhật danh mục</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <div class="modal-body">
+          <input type="hidden" [(ngModel)] = "updateCategory.id" #categoryId>
+          <div class="mb-3">
+            <label for="name" class="form-label">Tên danh mục</label>
+            <input [(ngModel)]="updateCategory.name" class="form-control" id="name" #categoryName>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="update(categoryId.value,categoryName.value);">Cập nhật</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Modal -->
+<div *ngIf="deleteCategory" class="modal fade" id="deleteCategoryModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModelLabel">Xóa danh mục</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn chắc chắn muốn xóa danh mục: {{deleteCategory.name}} ?</p>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
+                    <button (click)="delete(deleteCategory.id)" class="btn btn-danger"
+                        data-bs-dismiss="modal">Có</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
