@@ -11,7 +11,7 @@ export class CategoryComponent implements OnInit {
 
   categories: Category[] = [];
   updateCategory: Category = { id: 0, name: "" };
-  deleteCategory: Category = { id: 0 ,name:"" } ;
+  deleteCategory: Category = { id: 0, name: "" };
 
   constructor(
     private categoryService: CategoryService
@@ -40,18 +40,16 @@ export class CategoryComponent implements OnInit {
     this.updateCategory = category;
   }
 
-  update(idString: string, name: string): void {
-    const id = Number(idString);
-    name = name.trim();
-    if (!name) { return; }
-    this.categoryService.updateCategory({ id, name } as Category)
+  update(): void {
+    if (!this.updateCategory.name.trim()) { return; }
+    this.categoryService.updateCategory(this.updateCategory)
       .subscribe(category => {
         console.log('updated category:', category);
         this.getAllCategory();
       });
   }
 
-  onOpenDeleteModal(category: any){
+  onOpenDeleteModal(category: any) {
     this.deleteCategory = category;
   }
 
