@@ -11,6 +11,7 @@ import { RoomComponent } from './room/room.component';
 import { UserComponent } from './user/user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { AddRoomComponent } from './add-room/add-room.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     CategoryComponent,
     HomeComponent,
     RoomComponent,
-    UserComponent
+    UserComponent,
+    AddRoomComponent,
   ],
   imports: [
     BrowserModule,

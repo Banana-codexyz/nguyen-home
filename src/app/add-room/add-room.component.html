@@ -1,0 +1,72 @@
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2>Thêm mới phòng</h2>
+    </div>
+    <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Phòng mới</h4>
+        <form class="needs-validation" novalidate>
+            <div class="row g-3">
+                <div class="col-sm-6">
+                    <label for="firstName" class="form-label">Tên phòng</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                    <div class="invalid-feedback">
+                        Valid first name is required.
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <label for="lastName" class="form-label">Diện tích</label>
+                    <input type="number" class="form-control" id="lastName" placeholder="" value="" required>
+                    <div class="invalid-feedback">
+                        Valid last name is required.
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <label for="username" class="form-label">Địa chỉ</label>
+                    <div class="input-group has-validation">
+                        <textarea class="form-control" name="" id=""  rows="2"></textarea>
+                        <div class="invalid-feedback">
+                            Your username is required.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <label for="username" class="form-label">Mô tả</label>
+                    <div class="input-group has-validation">
+                        <textarea class="form-control" name="" id=""  rows="3"></textarea>
+                        <div class="invalid-feedback">
+                            Your username is required.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <label for="address" class="form-label">Ảnh</label>
+                    <input type="file" class="form-control" id="address" placeholder="Ảnh" required>
+                    <div class="invalid-feedback">
+                        Please enter your shipping address.
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="country" class="form-label">Danh mục</label>
+                    <select class="form-select" id="country" required>
+                        <option value="">Choose...</option>
+                        <option>United States</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a valid country.
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+
+            <button class="w-30 btn btn-success btn-lg" type="submit">Thêm mới</button>
+        </form>
+    </div>
+</main>

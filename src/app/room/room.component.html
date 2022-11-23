@@ -1,5 +1,77 @@
-<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h2>Phòng cho thuê</h2>
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="main-container">
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Phòng cho thuê</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                <span data-feather="calendar"></span>
+                This week
+            </button>
+        </div>
+    </div>
+    <br>
+    <div class="table-responsive">
+        <button routerLink="/add-room" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+            <i class="fa fa-plus"></i> Thêm mới
+        </button>
+        <br><br>
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Tên phòng</th>
+                    <th scope="col">Diện tích</th>
+                    <th scope="col">Địa chỉ</th>
+                    <th scope="col">Giá</th>
+                    <th scope="col">Ảnh</th>
+                    <th scope="col">Mô tả</th>
+                    <th scope="col">Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let room of rooms">
+                    <td>{{room.id}}</td>
+                    <td>{{room.name}}</td>
+                    <td>{{room.area}}</td>
+                    <td>{{room.address}}</td>
+                    <td>{{room.price}}</td>
+                    <td>{{room.image}}</td>
+                    <td>{{room.description}}</td>
+                    <td>
+                        <i
+                            style="font-size: 23px;margin-left: 20px;color: brown;cursor: pointer;"
+                            class="fa fa-pencil-square" aria-hidden="true"></i>
+                        <i (click)="onOpenDeleteModal(room)" data-bs-toggle="modal" data-bs-target="#deleteRoomModal"
+                            style="font-size: 23px;margin-left: 20px;color: brown;cursor: pointer;" class="fa fa-trash"
+                            aria-hidden="true"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </main>
+
+<!-- Delete Modal -->
+<div *ngIf="deleteRoom" class="modal fade" id="deleteRoomModal" tabindex="-1" role="dialog"
+    aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModelLabel">Xóa danh mục</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn chắc chắn muốn xóa phòng này ?</p>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
+                    <button (click)="delete(deleteRoom.id)" class="btn btn-danger"
+                        data-bs-dismiss="modal">Có</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
