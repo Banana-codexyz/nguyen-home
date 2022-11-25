@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from '../category';
-import { CategoryService } from '../category.service';
-import { Room } from '../room';
-import { RoomService } from '../room.service';
+import { Category } from 'src/app/model/category';
+import { Room } from 'src/app/model/room';
+import { CategoryService } from 'src/app/service/category.service';
+import { RoomService } from 'src/app/service/room.service';
 
 @Component({
   selector: 'app-room',
@@ -20,8 +20,9 @@ export class RoomComponent implements OnInit {
     address: '',
     price: 0,
     image: '',
-    description: ''
-  };
+    description: '',
+    categoryId: 0
+  } ;
 
   constructor(
     private roomService: RoomService,

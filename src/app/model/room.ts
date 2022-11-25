@@ -1,3 +1,4 @@
+
 export interface Room { 
     id: number;
     name: string;
@@ -5,5 +6,6 @@ export interface Room {
     address: string;
     price: number;
     image: string;
-    description: string
+    description: string;
+    categoryId: number
 }

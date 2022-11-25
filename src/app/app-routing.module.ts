@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddRoomComponent } from './add-room/add-room.component';
-import { CategoryComponent } from './category/category.component';
-import { HomeComponent } from './home/home.component';
-import { RoomComponent } from './room/room.component';
-import { UserComponent } from './user/user.component';
+import { AddRoomComponent } from './pages/add-room/add-room.component';
+import { CategoryComponent } from './pages/category/category.component';
+import { HomeComponent } from './pages/home/home.component';
+import { RoomComponent } from './pages/room/room.component';
+import { UserComponent } from './pages/user/user.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
