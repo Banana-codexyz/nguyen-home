@@ -8,48 +8,49 @@
         <div class="row g-3">
             <div class="col-sm-6">
                 <label for="name" class="form-label">Tên phòng</label>
-                <input [(ngModel)]="newRoom.name" type="text" class="form-control" id="name" required>
+                <input [(ngModel)]="newRoom.name" type="text" class="form-control" id="name" name="name" required>
             </div>
 
             <div class="col-sm-6">
                 <label for="area" class="form-label">Diện tích</label>
-                <input [(ngModel)]="newRoom.area" type="number" class="form-control" id="area" required>
+                <input [(ngModel)]="newRoom.area" type="number" class="form-control" id="area" name="area" required>
             </div>
 
             <div class="col-md-6">
                 <label class="form-label">Tỉnh-Thành Phố</label>
-                <select class="form-select" required>
+                <select class="form-select" required name="province"> 
                     <option>Thành phố Hà Nội</option>
                 </select>
             </div>
 
             <div class="col-md-6">
                 <label class="form-label">Quận-Huyện</label>
-                <select class="form-select" #d (change)="getWardByDistrictId(d.value)">
+                <select class="form-select" #d name="district" (change)="getWardByDistrictId(d.value)">
                     <option value="">Chọn...</option>
-                    <option *ngFor="let district of districts" [ngModel]="district.id">{{district.name}}</option>
+                    <option *ngFor="let district of districts" [value]="district.id">{{district.name}}</option>
                 </select>
             </div>
 
             <div class="col-md-6">
                 <label class="form-label">Phường-Xã</label>
-                <select class="form-select" required>
+                <select class="form-select" name="ward" required>
                     <option value="">Chọn...</option>
-                    <option *ngFor="let ward of wards" [ngValue]="ward.id">{{ward.name}}</option>
+                    <option *ngFor="let ward of wards" [value]="ward.id">{{ward.name}}</option>
                 </select>
-            </div>
+            </div> 
+
 
             <div class="col-12">
                 <label for="address" class="form-label">Địa chỉ</label>
                 <div class="input-group has-validation">
-                    <textarea [(ngModel)]="newRoom.address" class="form-control" id="address" rows="2"></textarea>
+                    <textarea [(ngModel)]="newRoom.address" class="form-control" id="address" name="address" rows="2"></textarea>
                 </div>
             </div>
 
             <div class="col-12">
                 <label for="description" class="form-label">Mô tả</label>
                 <div class="input-group has-validation">
-                    <textarea [(ngModel)]="newRoom.description" class="form-control" id="" rows="3"></textarea>
+                    <textarea [(ngModel)]="newRoom.description" class="form-control" id="description" name="description" rows="3"></textarea>
                 </div>
             </div>
 
@@ -62,9 +63,9 @@
                 <label for="country" class="form-label">Danh mục</label>
                 <select [(ngModel)]="newRoom.categoryId" class="form-select" id="country" required>
                     <option value="">Chọn...</option>
-                    <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
+                    <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
                 </select>
-            </div>
+            </div> 
         </div>
         <br>
         <button (click)="add()" class="w-30 btn btn-success btn-lg" type="submit">Thêm mới</button>

@@ -28,7 +28,6 @@ export class AddRoomComponent implements OnInit {
     categoryId: 0
   };
   categories: Category[] = [];
-  provinces: Province[] = [];
   districts: District[] = [];
   wards: Ward[] = [];
 
@@ -43,7 +42,6 @@ export class AddRoomComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllCategory();
-    this.getAllProvince();
     this.getDistrictByProvinceId('01');
   }
 
@@ -58,10 +56,6 @@ export class AddRoomComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
-  }
-
-  getAllProvince(): void {
-    this.addressService.getAllProvince().subscribe(provinces => this.provinces = provinces);
   }
 
   getDistrictByProvinceId(provinceId: string): void {
